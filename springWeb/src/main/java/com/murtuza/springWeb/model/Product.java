@@ -1,7 +1,11 @@
 package com.murtuza.springWeb.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
+@Entity
 public class Product {
+    @Id
     private int id;
    private String name;
    private int price;
@@ -10,6 +14,10 @@ public class Product {
         this.id = id;
         this.name = name;
         this.price = price;
+    }
+
+    public Product() {
+
     }
 
     public int getId() {
