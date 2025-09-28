@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface ProductRepo extends JpaRepository<Product, Integer> {
 
 
+
+
 }
