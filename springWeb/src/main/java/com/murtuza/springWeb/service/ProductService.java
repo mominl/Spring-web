@@ -4,7 +4,9 @@ import com.murtuza.springWeb.model.Product;
 import com.murtuza.springWeb.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,9 +15,12 @@ import java.util.List;
 
 @Service
 public class  ProductService {
-    @Autowired
+
     private ProductRepo repo;
 
+    public ProductService(ProductRepo repo) {
+        this.repo = repo;
+    }
 
     public List<Product> getAllProducts() {
         return repo.findAll();
@@ -24,7 +29,19 @@ public class  ProductService {
     public Product getProducts(int id) {
         return repo.findById(id).orElse(new Product());
     }
-}
+
+
+    public Product addProduct(Product product, MultipartFile imageFile)
+        throws IOException {
+            product.setImageName(imageFile.getOriginalFilename());
+            product.setImageName(imageFile.getOriginalFilename());
+            product.setImageType(imageFile.getContentType());
+            product.setImageDate(imageFile.getBytes());
+
+
+            return repo.save(product);
+        }
+    }
 //    @Autowired
 //    ProductRepo repo;
 
