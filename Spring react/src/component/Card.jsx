@@ -6,18 +6,21 @@ function Card() {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
     
-    useEffect(() => {
-        fetch("http://localhost:8080/api/Products")
-            .then(response => response.json())
-            .then((json) => {
-                setData(json)
-                setLoading(false)
-            })
-            .catch((error) => {
-                console.error("Error fetching data:", error)
-                setLoading(false)
-            });
-    }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const response = await fetch("http://localhost:8080/api/Products");
+            const json = await response.json();
+            setData(json);
+            setLoading(false);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+            setLoading(false);
+        }
+    };
+    fetchData();
+}, []);
+
 
     return (
         <>
