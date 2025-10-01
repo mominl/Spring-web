@@ -21,7 +21,7 @@ public class ProductController {
     }
 
     
-
+//    RestApi start
     @RequestMapping("/")
     public String greet() {
         return "hi there";
@@ -52,8 +52,8 @@ public class ProductController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
 
-//    @GetMapping("/product/{id}/image")
-//    public
+
+   @GetMapping("/product/{id}/image")
+    public product getimage(@PathVariable  )
 }
